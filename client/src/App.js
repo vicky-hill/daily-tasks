@@ -1,0 +1,35 @@
+import React, { useEffect } from 'react'
+import DailyTasks from './components/dailyTasks/DailyTasks';
+import EnterTasks from './components/enterTasks/EnterTasks';
+import ViewTasks from './components/viewTasks/ViewTasks';
+import Login from './components/auth/Login';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './style.css';
+
+import { Provider } from 'react-redux';
+import { store } from './store';
+import { getUser, loginCheck } from './actions/auth';
+
+function App() {
+  useEffect(() => {
+    store.dispatch(loginCheck());
+    store.dispatch(getUser());
+  }, [])
+
+  return (
+    <Provider store={store}>
+      <Router>
+        <div className="container mt-5">
+          <Switch>
+            <Route exact path='/' component={DailyTasks} />
+            <Route exact path='/enter' component={EnterTasks} />
+            <Route exact path='/view' component={ViewTasks} />
+            <Route exact path='/login' component={Login} />
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
+  );
+}
+
+export default App;

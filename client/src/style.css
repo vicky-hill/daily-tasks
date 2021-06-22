@@ -1,0 +1,97 @@
+h1.daily-tasks {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.login-form {
+    margin-top: 200px;
+}
+
+.nav-link {
+    color: rgb(184, 182, 182);
+}
+
+.nav-link:hover {
+    color: #0B5ED6;
+}
+
+.fas {
+    padding: 3px;  
+    width: 30px;
+    font-size: 14px;
+    color: #999999;
+}
+
+.badge {
+    margin: 10px !important;
+    cursor: pointer;
+}
+
+.card-body {
+    padding: 0rem 1rem;
+}
+
+.card-body.options {
+    transform: translateX(-60px);
+}
+
+/* Checked */
+.bg-check {
+    background-color: rgba(216, 233, 210, 0.2) !important;
+    border: solid 2px transparent;
+}
+
+.bg-check.checked {
+    background-color: #D9EAD3 !important;
+    border: 2px solid #94C47E;
+}
+
+.bg-check .fas {
+    color: #94c47ea4;
+}
+
+.bg-check.checked .fas {
+    color: #94C47E;
+}
+
+
+/* Times */
+.bg-times {
+    background-color: rgba(244, 204, 204, 0.2) !important;
+    border: solid 2px transparent;
+}
+
+.bg-times.checked {
+    background-color: #f4cccc !important;
+    border: 2px solid #E16666;
+}
+
+.bg-times .fas {
+    color: rgba(225, 102, 102, 0.4);
+}
+
+.bg-times.checked .fas {
+    color: #E16666;
+}
+
+
+
+/* Blocked */
+.bg-minus {
+    background-color: rgba(255, 242, 204, 0.5) !important;
+    border: solid 2px transparent;
+}
+
+.bg-minus.checked {
+    background-color: #fdecb9 !important;
+    border: 2px solid #f7ce54;
+}
+
+.bg-minus .fas {
+    color: rgba(255, 217, 103, 0.5);
+}
+
+.bg-minus.checked .fas {
+    color: #FFD967;
+}
+
