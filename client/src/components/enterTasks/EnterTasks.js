@@ -30,7 +30,7 @@ const EnterTasks = ({ saveTask }) => {
 
     return (
         <div className="justify-content-center">
-            <h1 className="daily-tasks">Monday, June 6</h1>
+            <h1 className="daily-tasks">Date goes here</h1>
 
 
             <form className="w-50 mx-auto" onSubmit={onSubmit}>

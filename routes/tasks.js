@@ -1,31 +1,57 @@
 const express = require('express');
 const Task = require('../models/Task');
-
+const moment = require('moment-timezone');
 
 
 const router = express.Router();
 
 const { protect } = require('../middleware/auth');
 
+const getYesterday = () => {
+    const m = moment().toString();
+    
+    const today = moment().tz(m, 'America/Los_Angeles').format().split('T')[0];
+    const day = moment().tz(m, 'America/Los_Angeles').format('dddd');
+
+
+    let yesterday;
+
+    if(day === 'Monday') {
+        yesterday = moment().tz(m, 'America/Los_Angeles').subtract(3, "days").format().split('T')[0];
+    } else {
+        yesterday = moment().tz(m, 'America/Los_Angeles').subtract(1, "days").format().split('T')[0];
+    }
+
+
+    return yesterday
+}
+
+router.get('/test', (req, res) => {
+    try {
+
+        const yesterday = getYesterday();
+
+
+        res.json({ yesterday })
+
+        
+
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 
 // GET api/tasks  [Get all tasks from a user from last day]
 router.get('/lastday/:id', async (req, res) => {
     try {
 
-        const today = new Date();
-		const lastDay = new Date();
+        const yesterday = getYesterday();
 
-		lastDay.setDate(lastDay.getDate() - 1);
-		lastDay.setHours(0,0,0,0);
-
-        if(today.getDay() === 1) {
-            lastDay.setDate(lastDay.getDate() - 2);
-        }
-
-        const tasks = await Task.find({ user: req.params.id, date: { $gt: lastDay } });
+        const tasks = await Task.find({ user: req.params.id, date: yesterday });
 
 
-        res.status(200).json({tasks, date: lastDay });
+        res.status(200).json({tasks, date: yesterday });
     } catch (err) {
         console.log(err);
         res.status(500).json({msg: 'Something went wrong'});
@@ -36,19 +62,11 @@ router.get('/lastday/:id', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
 
-        const today = new Date();
-		const lastDay = new Date();
+        const yesterday = getYesterday();
 
-		lastDay.setDate(lastDay.getDate() - 1);
-		lastDay.setHours(0,0,0,0);
+        const tasks = await Task.find({ date: yesterday });
 
-        if(today.getDay() === 1) {
-            lastDay.setDate(lastDay.getDate() - 2);
-          }
-
-        const tasks = await Task.find({ date: { $gt: lastDay } });
-
-        res.status(200).json({tasks, date: lastDay });
+        res.status(200).json({tasks, date: yesterday });
 
     } catch (err) {
         console.log(err);

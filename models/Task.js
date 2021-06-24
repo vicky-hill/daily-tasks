@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment-timezone');
 
 const TaskSchema = new mongoose.Schema({
     name: {
@@ -26,8 +27,8 @@ const TaskSchema = new mongoose.Schema({
         default: false
     },
     date: {
-        type: Date,
-        default: Date.now 
+        type: String,
+        default: moment.tz(Date.now(), "America/Los_Angeles").format().split('T')[0]
     }
 });
 

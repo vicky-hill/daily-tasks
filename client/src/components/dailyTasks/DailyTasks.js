@@ -10,12 +10,10 @@ function DailyTasks({ getMyTasks, myTasks, taskDate, loading }) {
     useEffect(() => {
         setTimeout(() => {
             getMyTasks();
-        }, 500)
+        }, 1500)
     }, [])
 
     const date = `${moment(taskDate).format('dddd')}, ${moment(taskDate).format("MMMM DD")}`
-
-    console.log(date);
 
     return (
         <div className="justify-content-center">

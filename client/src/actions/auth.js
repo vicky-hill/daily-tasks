@@ -88,7 +88,7 @@ export const getUser = () => async dispatch => {
 
         const res = await api.get('/api/auth');
 
-        console.log('get user');
+        console.log(res.data.name);
         
         dispatch({
             type: GET_USER,
