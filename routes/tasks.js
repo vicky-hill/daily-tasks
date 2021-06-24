@@ -29,10 +29,17 @@ const getYesterday = () => {
 router.get('/test', (req, res) => {
     try {
 
+        // const yesterday = getYesterday();
         const yesterday = getYesterday();
 
+        const today = new Date();
+        const utcToday = new Date(today.toUTCString());
+        utcToday.setHours(utcToday.getHours()-7)
 
-        res.json({ yesterday })
+        const pstToday = new Date(utcToday);
+
+
+        res.json({ yesterday, pstToday })
 
         
 
