@@ -1,6 +1,5 @@
 const express = require('express');
 const Task = require('../models/Task');
-const moment = require('moment-timezone');
 
 
 const router = express.Router();
@@ -8,20 +7,21 @@ const router = express.Router();
 const { protect } = require('../middleware/auth');
 
 const getYesterday = () => {
-    const m = moment().toString();
-    
-    const today = moment().tz(m, 'America/Los_Angeles').format().split('T')[0];
-    const day = moment().tz(m, 'America/Los_Angeles').format('dddd');
 
+    const today = new Date();
+    const utcToday = new Date(today.toUTCString());
+    utcToday.setHours(utcToday.getHours()-7);
+
+    const pstToday = new Date(utcToday);
+    const day = pstToday.getDay();
 
     let yesterday;
 
-    if(day === 'Monday') {
-        yesterday = moment().tz(m, 'America/Los_Angeles').subtract(3, "days").format().split('T')[0];
+    if(day === 1) {
+        yesterday = new Date(new Date(utcToday).setDate(new Date(utcToday).getDate() - 3)).toISOString().split('T')[0];
     } else {
-        yesterday = moment().tz(m, 'America/Los_Angeles').subtract(1, "days").format().split('T')[0];
+        yesterday = new Date(new Date(utcToday).setDate(new Date(utcToday).getDate() - 1)).toISOString().split('T')[0];
     }
-
 
     return yesterday
 }
@@ -29,17 +29,18 @@ const getYesterday = () => {
 router.get('/test', (req, res) => {
     try {
 
-        // const yesterday = getYesterday();
         const yesterday = getYesterday();
 
         const today = new Date();
         const utcToday = new Date(today.toUTCString());
-        utcToday.setHours(utcToday.getHours()-7)
+        utcToday.setHours(utcToday.getHours()-7);
 
         const pstToday = new Date(utcToday);
 
+        const pstYesterday = new Date(new Date(utcToday).setDate(new Date(utcToday).getDate() - 1)).toISOString().split('T')[0];
 
-        res.json({ yesterday, pstToday })
+
+        res.json({ yesterday, pstToday, pstYesterday })
 
         
 
