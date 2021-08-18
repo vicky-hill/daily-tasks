@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import Option from './Option'
 import { connect } from 'react-redux';

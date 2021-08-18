@@ -1,10 +1,12 @@
+/* eslint-disable */
 import React, { useEffect } from 'react'
 import DailyTasks from './components/dailyTasks/DailyTasks';
 import EnterTasks from './components/enterTasks/EnterTasks';
 import ViewTasks from './components/viewTasks/ViewTasks';
 import Login from './components/auth/Login';
+import Home from './components/main/Home';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './style.css';
+import './main.scss';
 
 import { Provider } from 'react-redux';
 import { store } from './store';
@@ -18,7 +20,7 @@ function App() {
 
   return (
     <Provider store={store}>
-      <Router>
+      {/* <Router>
         <div className="container mt-5">
           <Switch>
             <Route exact path='/' component={DailyTasks} />
@@ -27,7 +29,17 @@ function App() {
             <Route exact path='/login' component={Login} />
           </Switch>
         </div>
+      </Router> */}
+
+      <Router>
+        <div className="container mt-5">
+          <Switch>
+            <Route exact path='/' component={Home} />
+          </Switch>
+        </div>
       </Router>
+
+
     </Provider>
   );
 }

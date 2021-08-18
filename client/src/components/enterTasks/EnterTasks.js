@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { set } from 'mongoose';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';

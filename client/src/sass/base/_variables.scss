@@ -1,0 +1,60 @@
+$default-margin: 1.5rem;
+
+
+/* ===================================
+   Colors
+==================================== */
+
+$teal: rgba(58, 218, 218, .9);
+$teal-dark: rgba(49, 179, 179, 0.9);
+
+
+$alternative-teal: #00bcd4;
+
+$primary: #344966;
+$primary-light: rgba($primary, 0.25);
+
+
+$secondary: #c3c9ce;
+$success: #28A745;
+$danger: #DD3444;
+$warning: #FFC007;
+$info: #13A3B8;
+$light: #F8F9FA;
+$dark: #333B3F;
+$pink: #ED7FC4;
+$white: #fff;
+
+
+/* ===================================
+   Breakpoints
+==================================== */
+$breakpoint-sm: 37.5em;      // 600px
+$breakpoint-md: 56.25em;     // 900px
+$breakpoint-lg: 80em;        // 1200px
+
+/* ===================================
+   z-index
+==================================== */
+
+$z-button-close: 1100;
+$z-pagination-hover: 1100;
+$z-pagination-active: 1200;
+
+
+$z-sidenav-overlay: 2000;
+$z-sidenav: 2100;
+$z-navbar: 2200;
+$z-megamenu: 2200;
+$z-dropdown-menu: 1800;
+$z-toast: 1900;
+$z-tooltip: 1800;
+$z-floating-btn: 1800;
+$z-bottomnav: 1900;
+
+
+
+$z-modal: 3000;
+$z-modal-content: 3100;
+
+

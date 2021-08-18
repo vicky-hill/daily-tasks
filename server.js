@@ -17,6 +17,7 @@ app.use(cors());
 
 // Mount Routes
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/projects', require('./routes/project'));
 app.use('/api/tasks', require('./routes/tasks'));
 
 // Set react as static folder

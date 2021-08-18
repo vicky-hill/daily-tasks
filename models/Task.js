@@ -1,15 +1,43 @@
 const mongoose = require('mongoose');
-const moment = require('moment-timezone');
 
 const TaskSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
     },
+    project: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Project',
+        required: true
+    },
     user: {
         type: mongoose.Schema.ObjectId,
         ref: 'User',
-        required: true
+        required: false
+    },
+    time: {
+        type: Number,
+        default: 0
+    },
+    priority: {
+        type: String,
+        default: ''
+    },
+    status: {
+        type: String,
+        default: ''
+    },
+    pending: {
+        type: Boolean,
+        default: true
+    },
+    onLocal : {
+        type: Boolean,
+        default: false
+    },
+    onStaging: {
+        type: Boolean,
+        default: false
     },
     done: {
         type: Boolean,
@@ -26,9 +54,16 @@ const TaskSchema = new mongoose.Schema({
         required: true,
         default: false
     },
+    jira: {
+        type: Number
+    },
     date: {
-        type: String,
-        default: moment.tz(Date.now(), "America/Los_Angeles").format().split('T')[0]
+        type: Date,
+        default: Date.now
+    },
+    rank: {
+        type: Number,
+        default: null
     }
 });
 

@@ -66,15 +66,13 @@ router.get('/lastday/:id', async (req, res) => {
     }
 })
 
-
-router.get('/', async (req, res) => {
+// GET api/tasks/project/:id
+router.get('/project/:projectId', async (req, res) => {
     try {
+        
+        const tasks = await Task.find({ project: req.params.projectId }).sort({ date: -1 });
 
-        const yesterday = getYesterday();
-
-        const tasks = await Task.find({ date: yesterday });
-
-        res.status(200).json({tasks, date: yesterday });
+        res.status(200).json(tasks);
 
     } catch (err) {
         console.log(err);
@@ -86,9 +84,12 @@ router.get('/', async (req, res) => {
 // POST api/tasks  [Save a new task]
 router.post('/', async (req, res) => {
     try {
+
+        const { name, project} = req.body;
+
         const reqTask = { 
-            name: req.body.name,
-            user: req.body.user
+            name,
+            project
         }
 
         const task = await Task.create(reqTask);

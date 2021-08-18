@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 
 const Option = ({ type, checked, onClick}) => {

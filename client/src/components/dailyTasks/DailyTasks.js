@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect } from 'react';
 import Task from './Task';
 import { connect } from 'react-redux'
